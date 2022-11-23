@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -5,6 +6,7 @@ import { IoMdDocument } from "react-icons/io";
 import Footer from "../components/Footer";
 import { getDocumentType } from "../redux/document-type/documentTypeSlice";
 import Navbar from "../components/Navbar";
+import { logout, reset } from "../redux/auth/authSlice";
 
 function Home() {
   const { documentsType } = useSelector((state) => state.documentType);
@@ -13,6 +15,12 @@ function Home() {
   const onChooseDocumentType = (index) => {
     const json = documentsType[index].content;
     navigation("/survey", { state: { json, id: documentsType[index].id } });
+  };
+  
+    const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigation("/signin");
   };
 
   useEffect(() => {
@@ -53,6 +61,11 @@ function Home() {
       </div>
       </div>
       
+    </div>
+    
+     <div>
+      <p>Home</p>
+      <button onClick={onLogout}>Log out</button>
     </div>
     </>
   );

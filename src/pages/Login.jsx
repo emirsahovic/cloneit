@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, setErrorToNo } from "../redux/auth/authSlice";
+import { loginUser, reset, setErrorLoginToNo } from "../redux/auth/authSlice";
 import { useEffect } from "react";
 
 const Login = () => {
@@ -32,10 +32,12 @@ const Login = () => {
 
     if (isErrorLogin) {
       setTimeout(() => {
-        dispatch(setErrorToNo());
+        dispatch(setErrorLoginToNo());
       }, 5000);
     }
-  }, [isSuccessLogin, isErrorLogin, navigate]);
+
+    dispatch(reset());
+  }, [isSuccessLogin, isErrorLogin, navigate, dispatch]);
 
   return (
     <div className="flex justify-center items-center">
@@ -65,7 +67,11 @@ const Login = () => {
             />
           </div>
           {formik.touched.password && formik.errors.password && <p className="text-red-600 text-sm ml-1 mt-1">{formik.errors.password}</p>}
-          <button type="submit" className="bg-green-500 px-14 py-2 text-white mt-12 rounded-md font-bold text-lg hover:opacity-90 duration-200">
+          <button
+            disabled={isLoadingLogin}
+            type="submit"
+            className="bg-green-500 px-14 py-2 text-white mt-12 rounded-md font-bold text-lg hover:opacity-90 duration-200"
+          >
             {isLoadingLogin ? "Loading..." : "Sign In"}
           </button>
         </form>
