@@ -8,7 +8,8 @@ import { useEffect } from "react";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoadingLogin, isSuccessLogin, isErrorLogin, messageLogin } = useSelector((state) => state.auth);
+  const { isLoadingLogin, isSuccessLogin, isErrorLogin, messageLogin } =
+    useSelector((state) => state.auth);
 
   const formik = useFormik({
     initialValues: {
@@ -16,7 +17,9 @@ const Login = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Enter a valid email address").required("Required"),
+      email: Yup.string()
+        .email("Enter a valid email address")
+        .required("Required"),
       password: Yup.string().required("Required"),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -35,15 +38,17 @@ const Login = () => {
         dispatch(setErrorLoginToNo());
       }, 5000);
     }
-
-    dispatch(reset());
   }, [isSuccessLogin, isErrorLogin, navigate, dispatch]);
 
   return (
     <div className="flex justify-center items-center">
       <div className="bg-white py-10 px-12 rounded-lg my-32 md:mt-80">
         <h2 className="font-bold text-2xl mb-8">Sign In</h2>
-        {isErrorLogin && <p className="text-red-500 font-semibold rounded-md mb-2">{messageLogin}</p>}
+        {isErrorLogin && (
+          <p className="text-red-500 font-semibold rounded-md mb-2">
+            {messageLogin}
+          </p>
+        )}
         <form onSubmit={formik.handleSubmit}>
           <div className="flex flex-col">
             <input
@@ -55,7 +60,11 @@ const Login = () => {
               className="rounded-md block bg-[#eee] p-3 mt-4 outline-none"
               placeholder="Email Address"
             />
-            {formik.touched.email && formik.errors.email && <p className="text-red-600 text-sm ml-1 mt-1">{formik.errors.email}</p>}
+            {formik.touched.email && formik.errors.email && (
+              <p className="text-red-600 text-sm ml-1 mt-1">
+                {formik.errors.email}
+              </p>
+            )}
             <input
               name="password"
               value={formik.values.password}
@@ -66,7 +75,11 @@ const Login = () => {
               placeholder="Password"
             />
           </div>
-          {formik.touched.password && formik.errors.password && <p className="text-red-600 text-sm ml-1 mt-1">{formik.errors.password}</p>}
+          {formik.touched.password && formik.errors.password && (
+            <p className="text-red-600 text-sm ml-1 mt-1">
+              {formik.errors.password}
+            </p>
+          )}
           <button
             disabled={isLoadingLogin}
             type="submit"
@@ -75,7 +88,10 @@ const Login = () => {
             {isLoadingLogin ? "Loading..." : "Sign In"}
           </button>
         </form>
-        <Link to="/signup" className="inline-block mt-1 text-blue-500 hover:opacity-80 duration-200">
+        <Link
+          to="/signup"
+          className="inline-block mt-1 text-blue-500 hover:opacity-80 duration-200"
+        >
           Don't have an account?
         </Link>
       </div>
