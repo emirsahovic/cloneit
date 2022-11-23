@@ -1,8 +1,8 @@
 import axios from "axios";
-
+import apiService from "../apiService";
 //GET DOCUMENT TYPE
 const getDocumentType = async () => {
-  const response = await axios.get("/document-types");
+  const response = await apiService.get("/document-types");
   return response.data.data;
 };
 
