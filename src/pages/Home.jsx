@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoMdDocument } from "react-icons/io";
 import Footer from "../components/Footer";
-import {getDocumentType} from '../redux/document-type/documentTypeSlice'
+import { getDocumentType } from "../redux/document-type/documentTypeSlice";
+import Navbar from "../components/Navbar";
 
 function Home() {
   const { documentsType } = useSelector((state) => state.documentType);
@@ -11,14 +12,17 @@ function Home() {
   const navigation = useNavigate();
   const onChooseDocumentType = (index) => {
     const json = documentsType[index].content;
-    navigation("/survey", { state: {json, id: documentsType[index].id } });
+    navigation("/survey", { state: { json, id: documentsType[index].id } });
   };
 
   useEffect(() => {
     dispatch(getDocumentType());
   }, [dispatch]);
   return (
-    <div className="p-4 ">
+    <>
+    <Navbar/>
+    <div className="p-4">
+      <div>
       <h1 className="font-bold text-2xl text-center p-2 capitalize">
         Build your document
       </h1>
@@ -47,8 +51,10 @@ function Home() {
             ))}
         </div>
       </div>
-      <Footer/>
+      </div>
+      
     </div>
+    </>
   );
 }
 

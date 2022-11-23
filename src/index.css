@@ -9,7 +9,7 @@
 }
 
 html, body {
-    background-color: #eee;
+    background-color: rgb(244 244 245);
 }
 
 .PhoneInputInput {
@@ -20,4 +20,8 @@ html, body {
 
 .PhoneInputInput:focus {
     outline: none;
+}
+
+.sd-body.sd-body--static{
+    max-width: 100% !important;
 }
