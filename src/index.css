@@ -21,3 +21,7 @@ html, body {
 .PhoneInputInput:focus {
     outline: none;
 }
+
+.css-6j8wv5-Input::placeholder {
+    color: #000 !important
+}

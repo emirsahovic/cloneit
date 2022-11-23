@@ -30,6 +30,15 @@ export const loginUser = createAsyncThunk("auth/login", async (userData, thunkAP
   }
 });
 
+export const logout = createAsyncThunk("auth/logout", async (userData, thunkAPI) => {
+  try {
+    await authService.logout();
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -39,16 +48,23 @@ export const authSlice = createSlice({
       state.isSuccessRegister = false;
       state.isLoadingRegister = false;
       state.messageRegister = "";
-    },
-    setErrorToNo: (state) => {
       state.isErrorLogin = false;
+      state.isSuccessLogin = false;
+      state.isLoadingLogin = false;
+      state.messageLogin = "";
+    },
+    setErrorLoginToNo: (state) => {
+      state.isErrorLogin = false;
+    },
+    setErrorRegisterToNo: (state) => {
+      state.isErrorRegister = false;
     },
   },
   extraReducers: {
     [registerUser.pending]: (state) => {
       state.isLoadingRegister = true;
     },
-    [registerUser.fulfilled]: (state, action) => {
+    [registerUser.fulfilled]: (state) => {
       state.isLoadingRegister = false;
       state.isSuccessRegister = true;
     },
@@ -61,7 +77,7 @@ export const authSlice = createSlice({
     [loginUser.pending]: (state) => {
       state.isLoadingLogin = true;
     },
-    [loginUser.fulfilled]: (state, action) => {
+    [loginUser.fulfilled]: (state) => {
       state.isLoadingLogin = false;
       state.isSuccessLogin = true;
     },
@@ -74,5 +90,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { reset, setErrorToNo } = authSlice.actions;
+export const { reset, setErrorLoginToNo, setErrorRegisterToNo } = authSlice.actions;
 export default authSlice.reducer;
