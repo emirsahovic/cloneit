@@ -9,7 +9,7 @@
 }
 
 html, body {
-    background-color: #eee;
+    background-color: rgb(244 244 245);
 }
 
 .PhoneInputInput {
@@ -22,6 +22,6 @@ html, body {
     outline: none;
 }
 
-.css-6j8wv5-Input::placeholder {
-    color: #000 !important
+.sd-body.sd-body--static{
+    max-width: 100% !important;
 }
