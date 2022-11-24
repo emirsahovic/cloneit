@@ -1,5 +1,4 @@
 import Container from "../components/Container";
-import Navbar from "../components/Navbar";
 import Select from "react-select";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
@@ -84,7 +83,6 @@ const MyProfile = () => {
 
   return (
     <div>
-      <Navbar />
       <Container>
         <h1 className="text-center text-3xl md:text-4xl font-bold mt-8 md:mt-14">Edit Your Profile</h1>
         <div className="mx-auto bg-green-400 w-44 h-1 mt-1"></div>

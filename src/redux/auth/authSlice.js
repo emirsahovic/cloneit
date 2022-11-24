@@ -6,7 +6,7 @@ const initialState = {
   isLoadingRegister: false,
   isErrorRegister: false,
   messageRegister: "",
-  isSuccessLogin: false,
+  isSuccessLogin: window.localStorage.getItem("message") ? true : false,
   isLoadingLogin: false,
   isErrorLogin: false,
   messageLogin: "",
