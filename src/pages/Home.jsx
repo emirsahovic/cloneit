@@ -16,12 +16,6 @@ function Home() {
     navigation("/survey", { state: { json, id: documentsType[index].id } });
   };
 
-  const onLogout = () => {
-    dispatch(logout());
-    dispatch(reset());
-    navigation("/signin");
-  };
-
   useEffect(() => {
     dispatch(getDocumentType());
   }, [dispatch]);
@@ -33,7 +27,6 @@ function Home() {
         <div>
           <h1 className="font-bold text-2xl text-center p-2 capitalize">Build your document</h1>
           <h3 className="font-bold text-xl text-center p-2 text-zinc-400">Create Your Free Legal Documents & Contracts Online in Minutes</h3>
-
           <div className="flex justify-center my-5">
             <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
               {documentsType &&
@@ -56,10 +49,6 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div>
-        <button onClick={onLogout}>Log out</button>
       </div>
     </>
   );
