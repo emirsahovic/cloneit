@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, reset, setErrorLoginToNo } from "../redux/auth/authSlice";
+import { loginUser, setErrorLoginToNo } from "../redux/auth/authSlice";
 import { useEffect } from "react";
 
 const Login = () => {
@@ -35,13 +35,11 @@ const Login = () => {
         dispatch(setErrorLoginToNo());
       }, 5000);
     }
-
-    dispatch(reset());
   }, [isSuccessLogin, isErrorLogin, navigate, dispatch]);
 
   return (
     <div className="flex justify-center items-center">
-      <div className="bg-white py-10 px-12 rounded-lg my-32 md:mt-80">
+      <div className="bg-white py-10 px-12 rounded-lg my-32 md:mt-64">
         <h2 className="font-bold text-2xl mb-8">Sign In</h2>
         {isErrorLogin && <p className="text-red-500 font-semibold rounded-md mb-2">{messageLogin}</p>}
         <form onSubmit={formik.handleSubmit}>

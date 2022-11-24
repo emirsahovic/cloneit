@@ -3,6 +3,7 @@ import AuthRoute from "./components/AuthRoute";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import MyProfile from "./pages/MyProfile";
 import Registration from "./pages/Registration";
 import Surveys from "./pages/Surveys";
 
@@ -18,6 +19,7 @@ function App() {
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/survey" element={<Surveys />} />
+        <Route path="/profile" element={<MyProfile />} />
       </Routes>
       <Footer />
     </div>
