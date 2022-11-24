@@ -14,7 +14,7 @@ function Navbar() {
     navigation("/signin");
   };
   return (
-    <div className="w-full h-24 py-2 lg:px-10 bg-zinc-50">
+    <div className="w-full h-[100px] py-2 lg:px-10 px-4 bg-zinc-50">
       <div className="w-full h-full flex justify-between items-center">
         <div>
           <Link to={"/"}>

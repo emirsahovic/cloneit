@@ -25,3 +25,9 @@ html, body {
 .sd-body.sd-body--static{
     max-width: 100% !important;
 }
+
+@media only screen and (max-width: 900px) {
+    .sd-progress-buttons__list {
+      display: none !important;
+    }
+  }

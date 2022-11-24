@@ -2,18 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoMdDocument } from "react-icons/io";
-import Footer from "../components/Footer";
 import { getDocumentType } from "../redux/document-type/documentTypeSlice";
-import Navbar from "../components/Navbar";
-import { logout, reset } from "../redux/auth/authSlice";
+import apiService from "../redux/apiService";
 
 function Home() {
   const { documentsType } = useSelector((state) => state.documentType);
   const dispatch = useDispatch();
   const navigation = useNavigate();
-  const onChooseDocumentType = (index) => {
-    const json = documentsType[index].content;
-    navigation("/survey", { state: { json, id: documentsType[index].id } });
+  const onChooseDocumentType = (id) => {
+    navigation(`/survey/${id}`);
   };
 
   useEffect(() => {
@@ -21,7 +18,7 @@ function Home() {
   }, [dispatch]);
   return (
     <>
-      <Navbar />
+
       <div className="p-4">
         <div>
           <h1 className="font-bold text-2xl text-center p-2 capitalize">
@@ -38,7 +35,7 @@ function Home() {
                 documentsType.map((type, index) => (
                   <div
                     key={index}
-                    onClick={() => onChooseDocumentType(index)}
+                    onClick={() => onChooseDocumentType(type.id)}
                     className="flex justify-center p-5 border rounded border-[#1ab394] w-72 h-72 items-center cursonr cursor-pointer"
                   >
                     <div className="text-center space-y-7">
